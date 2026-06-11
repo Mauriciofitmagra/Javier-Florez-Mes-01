@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitMagra · Javier Flórez · Mes 01 · Reset</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080f08;--bg2:#0d170d;--surface:#111e11;--card:#182818;--card2:#1e321e;--accent:#7ed957;--acc-dim:rgba(126,217,87,.14);--acc-dark:#52a82a;--text:#eeede6;--dim:#8fa08f;--muted:#506050;--border:#1d301d;--warn:#f0a030;--err:#e06060;--info:#60b0e0;--pink:#e090c0;--gold:#e0c060;--radius:12px;--rsm:8px;}
+[data-theme="light"]{--bg:#f4f1ea;--bg2:#ede9e1;--surface:#fff;--card:#fff;--card2:#f0ece4;--accent:#3a8a3a;--acc-dim:rgba(58,138,58,.12);--acc-dark:#286028;--text:#141414;--dim:#505050;--muted:#888;--border:#dedad2;--warn:#b87020;--err:#c03030;--info:#1860a0;--pink:#b04080;--gold:#9a7a10;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.65;min-height:100vh;transition:background .35s,color .35s;}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+em{font-style:italic;color:var(--accent);}
+strong{font-weight:600;}
+
+.hdr{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:920px;margin:0 auto;padding:11px 20px;}
+.logo-row{display:flex;align-items:center;gap:10px;}
+.logo-fm{font-family:'Playfair Display',serif;font-weight:900;font-size:19px;color:var(--text);letter-spacing:-.02em;}
+.logo-fm span{color:var(--accent);}
+.badge-mes{background:var(--accent);color:#060e06;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+.theme-btn{background:var(--card);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.theme-btn:hover{border-color:var(--accent);transform:rotate(20deg);}
+
+/* NAV */
+.nav{position:sticky;top:60px;z-index:99;background:var(--bg2);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-in{display:flex;gap:2px;max-width:920px;margin:0 auto;padding:6px 12px;min-width:max-content;}
+.tab-btn{background:none;border:none;color:var(--dim);font-family:inherit;font-size:13px;font-weight:500;padding:8px 13px;border-radius:var(--rsm);cursor:pointer;white-space:nowrap;transition:.2s;display:flex;align-items:center;gap:5px;}
+.tab-btn:hover{color:var(--text);background:var(--acc-dim);}
+.tab-btn.active{color:#060e06;background:var(--accent);font-weight:600;}
+
+.wrap{max-width:920px;margin:0 auto;padding:24px 20px 80px;}
+.tab-pane{display:none;animation:fade .4s ease;}
+.tab-pane.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+.hero{text-align:center;padding:18px 0 26px;}
+.hero h1{font-size:34px;font-weight:900;margin-bottom:6px;}
+.hero .sub{color:var(--dim);font-size:14px;}
+.hero .name{color:var(--accent);}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.card-acc{border-left:3px solid var(--accent);}
+.card h2{font-size:22px;margin-bottom:4px;}
+.card h3{font-size:17px;margin:18px 0 8px;color:var(--accent);}
+.card h3:first-child{margin-top:0;}
+.section-lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px;}
+.lead{color:var(--dim);font-size:14.5px;margin-bottom:10px;}
+p{margin-bottom:10px;}
+ul,ol{margin:0 0 12px 20px;}
+li{margin-bottom:6px;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:680px){.grid2,.grid3,.grid4{grid-template-columns:1fr 1fr;}}
+@media(max-width:440px){.grid3,.grid4{grid-template-columns:1fr;}}
+
+.stat{background:var(--card2);border:1px solid var(--border);border-radius:var(--rsm);padding:14px;text-align:center;}
+.stat .num{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--accent);}
+.stat .lbl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+
+.eq-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:14px;}
+.eq-row:last-child{border-bottom:none;}
+.eq-row .v{font-family:'Playfair Display',serif;font-weight:700;color:var(--accent);font-size:16px;}
+.eq-prom{background:var(--acc-dim);border-radius:var(--rsm);padding:12px 14px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;}
+.eq-prom .v{font-size:22px;color:var(--accent);font-family:'Playfair Display',serif;font-weight:900;}
+
+.chip{display:inline-block;background:var(--acc-dim);color:var(--accent);font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:14px;margin:2px 3px 2px 0;}
+.chip-w{background:rgba(240,160,48,.14);color:var(--warn);}
+.chip-i{background:rgba(96,176,224,.14);color:var(--info);}
+.chip-p{background:rgba(224,144,192,.14);color:var(--pink);}
+
+.callout{background:var(--acc-dim);border-left:3px solid var(--accent);border-radius:0 var(--rsm) var(--rsm) 0;padding:13px 15px;margin:14px 0;font-size:14px;}
+.callout.warn{background:rgba(240,160,48,.1);border-color:var(--warn);}
+.callout.info{background:rgba(96,176,224,.1);border-color:var(--info);}
+.callout .ct{font-weight:600;color:var(--accent);display:block;margin-bottom:3px;}
+.callout.warn .ct{color:var(--warn);}
+.callout.info .ct{color:var(--info);}
+
+.quote{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--text);text-align:center;padding:16px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:18px 0;line-height:1.5;}
+.quote small{display:block;font-family:'DM Sans';font-style:normal;font-size:12px;color:var(--muted);margin-top:6px;}
+
+/* WEIGHT CHART (estilo Juan Zaraza) */
+.chart-box{background:var(--card2);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin:14px 0;}
+.chart-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px;}
+.chart-head .from{font-size:13px;color:var(--dim);}
+.chart-head .to{text-align:right;}
+.chart-head .to .big{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--accent);line-height:1;}
+.chart-head .to small{font-size:11px;color:var(--dim);}
+.svg-chart{width:100%;height:auto;display:block;}
+.wk-legend{display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:var(--muted);}
+
+.prog-wrap{margin:16px 0;}
+.prog-lbls{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-bottom:5px;}
+.prog-bar{height:9px;background:var(--card2);border-radius:6px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--acc-dark),var(--accent));border-radius:6px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+
+.sess-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.sess-row:last-child{border-bottom:none;}
+.sess-dot{width:30px;height:30px;border-radius:50%;background:var(--card2);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent);flex-shrink:0;cursor:pointer;transition:.2s;}
+.sess-dot.done{background:var(--accent);color:#060e06;}
+.sess-row .d{font-size:13.5px;}
+.sess-row .d small{color:var(--dim);display:block;font-size:11.5px;}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+.tbl th{text-align:left;color:var(--accent);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--border);}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl .ev{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;}
+.ev-A{background:rgba(126,217,87,.18);color:var(--accent);}
+.ev-M{background:rgba(240,160,48,.16);color:var(--warn);}
+.ev-B{background:rgba(96,176,224,.16);color:var(--info);}
+
+.foot{text-align:center;padding:24px 0 0;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:20px;}
+.foot a{color:var(--accent);}
+
+.back-top{position:fixed;bottom:20px;right:20px;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#060e06;border:none;font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;z-index:90;box-shadow:0 4px 14px rgba(0,0,0,.3);}
+.back-top.vis{opacity:1;pointer-events:auto;}
+
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#060e06;font-weight:700;padding:12px 22px;border-radius:var(--rsm);font-size:14px;margin-top:8px;}
+.wa-btn:hover{text-decoration:none;background:var(--acc-dark);color:#fff;}
+
+/* exercise / biserie */
+.ex-block{background:var(--card2);border:1px solid var(--border);border-radius:var(--rsm);padding:13px 15px;margin-bottom:10px;}
+.ex-block .bi-tag{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;}
+.ex-name{font-weight:600;font-size:15px;margin:3px 0 6px;}
+.ex-chips{margin-bottom:6px;}
+.ex-cue{font-size:12.5px;color:var(--dim);margin-bottom:8px;}
+.yt-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--accent);background:var(--acc-dim);padding:5px 11px;border-radius:14px;cursor:pointer;border:none;font-family:inherit;font-weight:600;}
+.yt-frame{margin-top:10px;display:none;}
+.yt-frame.open{display:block;}
+.yt-frame iframe{width:100%;aspect-ratio:16/9;border:none;border-radius:var(--rsm);}
+
+.sub-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.sub-btn{background:var(--card2);border:1px solid var(--border);color:var(--dim);font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:var(--rsm);cursor:pointer;transition:.2s;}
+.sub-btn.active{background:var(--accent);color:#060e06;border-color:var(--accent);}
+.sub-pane{display:none;}
+.sub-pane.active{display:block;animation:fade .3s;}
+
+.day-hdr{display:flex;align-items:center;justify-content:space-between;background:var(--acc-dim);border-radius:var(--rsm);padding:10px 14px;margin-bottom:12px;}
+.day-hdr .dt{font-family:'Playfair Display';font-weight:700;font-size:16px;color:var(--accent);}
+.day-hdr .dl{font-size:11px;color:var(--dim);}
+
+.water-glasses{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0;}
+.glass{width:34px;height:44px;border:2px solid var(--border);border-radius:4px 4px 8px 8px;cursor:pointer;position:relative;overflow:hidden;background:var(--card2);transition:.2s;}
+.glass .fill{position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(180deg,var(--info),#4a90c0);transition:height .3s;}
+.glass.full .fill{height:100%;}
+.water-count{text-align:center;font-family:'Playfair Display';font-size:24px;font-weight:700;color:var(--info);}
+
+.code-box{background:var(--card2);border:1px dashed var(--accent);border-radius:var(--rsm);padding:12px 16px;text-align:center;margin:12px 0;}
+.code-box .cd{font-family:'Playfair Display';font-size:18px;font-weight:700;color:var(--accent);letter-spacing:.04em;}
+.code-box small{color:var(--dim);font-size:11px;}
+
+.detox-day{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--rsm) var(--rsm) 0;padding:13px 16px;margin-bottom:10px;}
+.detox-day .dn{font-family:'Playfair Display';font-weight:700;color:var(--accent);font-size:15px;margin-bottom:3px;}
+.detox-day .org{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="logo-row">
+      <span class="logo-fm">Fit<span>Magra</span></span>
+      <span class="badge-mes">Mes 01 · Reset</span>
+    </div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Cambiar tema">🌙</button>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-in" id="navIn">
+    <button class="tab-btn active" data-tab="resumen">📊 Resumen</button>
+    <button class="tab-btn" data-tab="examenes">🩺 Exámenes</button>
+    <button class="tab-btn" data-tab="entrena">🏋️ Entrena</button>
+    <button class="tab-btn" data-tab="nutricion">🥗 Nutrición</button>
+    <button class="tab-btn" data-tab="turbo">⚡ Turbo AM</button>
+    <button class="tab-btn" data-tab="detox">🌿 Detox 7D</button>
+    <button class="tab-btn" data-tab="suplementos">💊 Suplementos</button>
+    <button class="tab-btn" data-tab="cerrar">🎯 Cerrar Mes</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ===================== RESUMEN ===================== -->
+<section class="tab-pane active" id="resumen">
+  <div class="hero">
+    <h1>El <span class="name">Reset</span> de Javier</h1>
+    <p class="sub">Mes 01 · Sistema FitMagra · Recomposición + Reactivación metabólica</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">El encuadre</span>
+    <p class="lead">Javier, faltan <strong>8 semanas</strong> para tu boda. Este no es un mes más: es un <em>reset</em>. Vamos a reactivar dos sistemas que el cuerpo apagó con los años, el café y la rutina — tu motor energético y tu eje hormonal — y a la vez a secar la grasa que tapa el trabajo que ya haces. La meta no es solo verte bien en el traje. Es que el día de la luna de miel tu cuerpo responda como tú esperas que responda.</p>
+    <div class="quote">
+      "El cuerpo que entrenas hoy no es por lo que fuiste. Es por el hombre que vas a ser el día que digas «sí»."
+      <small>— Filosofía FitMagra</small>
+    </div>
+  </div>
+
+  <div class="grid4">
+    <div class="stat"><div class="num">43</div><div class="lbl">Años</div></div>
+    <div class="stat"><div class="num">175</div><div class="lbl">cm</div></div>
+    <div class="stat"><div class="num">75</div><div class="lbl">kg inicio</div></div>
+    <div class="stat"><div class="num">6×</div><div class="lbl">Sesiones / mes</div></div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Línea base metabólica · 4 ecuaciones</span>
+    <p class="lead">Tu Tasa Metabólica Basal (TMB) calculada con cuatro modelos validados, promediados para precisión clínica:</p>
+    <div class="eq-row"><span>Harris-Benedict (revisada)</span><span class="v">1.689</span></div>
+    <div class="eq-row"><span>Mifflin-St Jeor</span><span class="v">1.634</span></div>
+    <div class="eq-row"><span>Cunningham (masa magra)</span><span class="v">1.787</span></div>
+    <div class="eq-row"><span>Oxford / Henry</span><span class="v">1.734</span></div>
+    <div class="eq-prom"><span><strong>TMB promedio</strong></span><span class="v">1.711 kcal</span></div>
+    <div class="eq-prom" style="margin-top:6px;"><span><strong>Gasto total diario (GETD)</strong><br><small style="color:var(--dim)">factor actividad ×1.55</small></span><span class="v">2.652 kcal</span></div>
+    <div class="grid2" style="margin-top:14px;">
+      <div class="stat"><div class="num">2.300</div><div class="lbl">kcal día entreno</div></div>
+      <div class="stat"><div class="num">2.050</div><div class="lbl">kcal día descanso</div></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:10px;">Déficit estratégico moderado: pierdes grasa sin perder músculo ni energía. Proteína objetivo: <strong style="color:var(--accent)">150 g/día (2.0 g/kg)</strong> para blindar masa magra en el secado.</p>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Tu compromiso · Trayectoria de peso</span>
+    <p class="lead">Esta es tu ruta. No es una promesa mía: es un contrato contigo mismo. Cada semana que entrenamos juntos, la línea baja.</p>
+    <div class="chart-box">
+      <div class="chart-head">
+        <div class="from"><strong style="color:var(--text);font-size:18px;">75 kg</strong><br>punto de partida</div>
+        <div class="to"><span class="big">71 kg</span><br><small>meta boda · grasa seca</small></div>
+      </div>
+      <svg class="svg-chart" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="wgrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- grid lines -->
+        <line x1="50" y1="30" x2="580" y2="30" stroke="var(--border)" stroke-width="1"/>
+        <line x1="50" y1="80" x2="580" y2="80" stroke="var(--border)" stroke-width="1"/>
+        <line x1="50" y1="130" x2="580" y2="130" stroke="var(--border)" stroke-width="1"/>
+        <line x1="50" y1="180" x2="580" y2="180" stroke="var(--border)" stroke-width="1"/>
+        <!-- y labels -->
+        <text x="42" y="34" fill="var(--muted)" font-size="11" text-anchor="end">76</text>
+        <text x="42" y="84" fill="var(--muted)" font-size="11" text-anchor="end">74</text>
+        <text x="42" y="134" fill="var(--muted)" font-size="11" text-anchor="end">72</text>
+        <text x="42" y="184" fill="var(--muted)" font-size="11" text-anchor="end">70</text>
+        <!-- area under curve: 75->74.2->73.3->72.4->71.5->71 across wk0..5 -->
+        <path id="wArea" d="M50,55 L156,75 L262,98 L368,120 L474,143 L580,155 L580,200 L50,200 Z" fill="url(#wgrad)" opacity="0"/>
+        <!-- the line -->
+        <polyline id="wLine" points="50,55 156,75 262,98 368,120 474,143 580,155" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="700" stroke-dashoffset="700"/>
+        <!-- points -->
+        <circle class="wpt" cx="50" cy="55" r="5" fill="var(--accent)"/>
+        <circle class="wpt" cx="156" cy="75" r="5" fill="var(--accent)"/>
+        <circle class="wpt" cx="262" cy="98" r="5" fill="var(--accent)"/>
+        <circle class="wpt" cx="368" cy="120" r="5" fill="var(--accent)"/>
+        <circle class="wpt" cx="474" cy="143" r="5" fill="var(--accent)"/>
+        <circle class="wpt" cx="580" cy="155" r="6" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>
+      </svg>
+      <div class="wk-legend">
+        <span>Inicio</span><span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span><span>Meta</span>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);">~0.8–1 kg de grasa por semana. Ritmo seguro, sostenible y visible. La báscula es solo un indicador: el espejo y el cinturón cuentan la historia real.</p>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Sesiones presenciales · Te vigilo de cerca</span>
+    <p class="lead">6 entrenamientos conmigo este mes. En cada uno superviso cómo responde tu cuerpo al reset y ajustamos en tiempo real.</p>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">1</div><div class="d">Sesión 1 · Evaluación + Push <small>Tomamos medidas base, foto y técnica</small></div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">2</div><div class="d">Sesión 2 · Pull + cardioaceleración <small>Primer test cardiopulmonar</small></div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">3</div><div class="d">Sesión 3 · Piernas + core <small>Chequeo de energía sin café</small></div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">4</div><div class="d">Sesión 4 · Full body metabólico <small>Revisión de cintura</small></div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">5</div><div class="d">Sesión 5 · Fuerza + acondicionamiento <small>Ajuste de cargas</small></div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">6</div><div class="d">Sesión 6 · Cierre + re-test <small>Medidas finales y foto comparativa</small></div></div>
+    <div class="prog-wrap">
+      <div class="prog-lbls"><span>Progreso del viaje FitMagra</span><span>Mes 01 de 06</span></div>
+      <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXAMENES ===================== -->
+<section class="tab-pane" id="examenes">
+  <div class="hero">
+    <h1>Tu <span class="name">línea base</span> real</h1>
+    <p class="sub">Lo que un coach de verdad pide antes de tocar tu metabolismo</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">Por qué esto te separa del resto</span>
+    <p class="lead">Cualquiera te puede dar una rutina. Yo voy a hacer algo distinto: medir tu cuerpo por dentro <strong>antes</strong> de empezar, para que dentro de 8 semanas podamos ver en números — no en sensaciones — todo lo que cambiaste. Esto es lo que hace que FitMagra sea un sistema clínico y no un plan de gimnasio.</p>
+    <div class="callout">
+      <span class="ct">El valor real para ti</span>
+      Cuando repitamos estos exámenes al final del proceso, vas a tener la prueba objetiva de tu transformación. Eso vale más que cualquier foto.
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Panel base recomendado · Mes 01</span>
+    <p class="lead">Económico, lo tomas en cualquier laboratorio en ayunas. Lo coordinamos en la primera semana, en paralelo al arranque.</p>
+    <table class="tbl">
+      <tr><th>Examen</th><th>Qué nos dice</th></tr>
+      <tr><td><strong>Glucosa en ayunas</strong></td><td>Cómo maneja tu cuerpo el azúcar en reposo</td></tr>
+      <tr><td><strong>Hemoglobina glicosilada (HbA1c)</strong></td><td>Promedio de azúcar de los últimos 3 meses — la foto real</td></tr>
+      <tr><td><strong>Perfil lipídico</strong></td><td>Colesterol y triglicéridos · salud cardiovascular</td></tr>
+      <tr><td><strong>Transaminasas (ALT / AST)</strong></td><td>Estado del hígado, tu filtro metabólico</td></tr>
+      <tr><td><strong>Bilirrubinas</strong></td><td>Función hepática y biliar</td></tr>
+      <tr><td><strong>Testosterona total y libre</strong></td><td>Tu eje hormonal · punto de partida del reset</td></tr>
+      <tr><td><strong>Vitamina D · Zinc</strong> <span class="chip-i" style="font-size:9px;padding:1px 6px;">opcional</span></td><td>Cofactores de energía y testosterona</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Un punto de honestidad clínica</span>
+    <div class="callout warn">
+      <span class="ct">⚠️ Antes del cardio en ayunas</span>
+      Javier, noté que en una de tus sesiones te pusiste pálido / amarillo bajo esfuerzo. Probablemente no es nada, pero como tu coach no lo dejo pasar: ese signo merece que el hígado y la glucemia los miremos con números antes de exigirte cardio en ayunas y déficit. Por eso el panel incluye transaminasas y bilirrubinas. Es protección, no alarma.
+    </div>
+    <p style="font-size:13px;color:var(--dim);">Mientras tengamos los resultados, arrancamos con la fase de adaptación cuidando intensidad. En cuanto el hígado salga limpio, soltamos toda la potencia del protocolo.</p>
+  </div>
+
+  <a class="wa-btn" href="https://wa.me/573165754416?text=Hola%20Mauro%2C%20ya%20agend%C3%A9%20mis%20ex%C3%A1menes%20de%20laboratorio" target="_blank">📲 Avisarle a Mauro que agendé mis exámenes</a>
+</section>
+
+<!-- ===================== ENTRENA ===================== -->
+<section class="tab-pane" id="entrena">
+  <div class="hero">
+    <h1>Entrenamiento <span class="name">Intermedio</span></h1>
+    <p class="sub">Tu gimnasio · Tu equipamiento · Tu reset</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">La lógica del método</span>
+    <p class="lead">Cada ejercicio de este plan fue seleccionado a partir de lo que tienes disponible en tu espacio: multigimnasio FT-8500, barra olímpica, mancuernas ajustables, TRX anclado, cuerda de batalla, medicine ball, balones de estabilidad y cuerda de saltar. <strong>Cero traslados a cadena de gimnasio.</strong> La cardioaceleración se integra entre series: en lugar de descansar sentado, el corazón sigue trabajando — así entrenas fuerza y sistema cardiovascular en la misma sesión.</p>
+    <div class="grid3">
+      <div class="stat"><div class="num">4</div><div class="lbl">días / semana</div></div>
+      <div class="stat"><div class="num">RIR 2</div><div class="lbl">esfuerzo</div></div>
+      <div class="stat"><div class="num">70-80'</div><div class="lbl">por sesión</div></div>
+    </div>
+    <div class="callout info">
+      <span class="ct">Estrategia de pesos — sin cambiar discos entre ejercicios</span>
+      Antes de cada sesión configuras <strong>2 barras</strong> con el peso del día y no las tocas más. Las mancuernas (~5-6 kg) quedan fijas toda la sesión. La máquina usa su propio pin. TRX y medicine ball no tienen configuración. Así no pierdes tiempo entre ejercicios y mantienes el pulso elevado.
+    </div>
+  </div>
+
+  <div class="sub-nav" id="entSub">
+    <button class="sub-btn active" data-sub="d1">Día A · Empuje + TRX</button>
+    <button class="sub-btn" data-sub="d2">Día B · Jalón + Brazos</button>
+    <button class="sub-btn" data-sub="d3">Día C · Pierna + Core</button>
+    <button class="sub-btn" data-sub="d4">Día D · Full Metabólico</button>
+  </div>
+
+  <!-- ===== DÍA A ===== -->
+  <div class="sub-pane active" id="d1">
+    <div class="day-hdr"><span class="dt">Día A · Empuje + TRX</span><span class="dl">Pecho · Hombro · Tríceps · Antebrazo</span></div>
+    <div class="callout info" style="margin-bottom:14px;">
+      <span class="ct">Configuración previa</span>
+      Barra olímpica: <strong>27 kg</strong> (barra + 2×10 kg) · Mancuernas: <strong>5-6 kg fijas</strong> · TRX: anclado al techo, listo.
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">🔥 Calentamiento · 50 lazos</span>
+      <div class="ex-name">Jump rope — 50 saltos continuos</div>
+      <div class="ex-chips"><span class="chip">2 rondas</span><span class="chip-i">ritmo constante</span></div>
+      <div class="ex-cue">Salta con ritmo parejo. Muñecas activas, aterrizaje suave en el metatarso. Activa el sistema cardiovascular desde el arranque.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/FJmRQ5iTXKE"></iframe></div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 1 · Pecho</span>
+      <div class="ex-name">Barbell bench press — Press de banca con barra (27 kg)</div>
+      <div class="ex-chips"><span class="chip">4 series</span><span class="chip">10 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Barra · 27 kg</span></div>
+      <div class="ex-cue">Baja controlado 2 seg, codos a 45°. Empuja explosivo arriba sin bloquear el codo. Aprieta pecho en el tope.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/rT7DgCr-3pg"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 1 · cardioaceleración</span>
+      <div class="ex-name">Battle rope alternating waves — Ondas alternas de cuerda de batalla</div>
+      <div class="ex-chips"><span class="chip-i">35 seg</span><span class="chip-i">máxima velocidad</span></div>
+      <div class="ex-cue">Rodillas semiflexionadas, core apretado. Alterna brazos como si aplastaras el suelo. Pulso al techo entre series de press.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/HSCxgVmGWvw"></iframe></div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 2 · TRX Pecho</span>
+      <div class="ex-name">TRX push-up — Flexión en suspensión</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">12 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">TRX · corporal</span></div>
+      <div class="ex-cue">Manos en los agarres del TRX, cuerpo en plancha. Baja el pecho entre las manos. El TRX añade inestabilidad que activa el core y los estabilizadores del pecho.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/x7_I5SO_p6k"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 2 · cardioaceleración</span>
+      <div class="ex-name">4-count step-up — Step en 4 tiempos a máxima velocidad</div>
+      <div class="ex-chips"><span class="chip-i">40 seg</span><span class="chip-i">escalador FT-8500</span></div>
+      <div class="ex-cue">Usa el escalador de la máquina o el banco. 4 tiempos: sube derecha, sube izquierda, baja derecha, baja izquierda. A velocidad máxima — exige pulmón y corazón.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 3 · Hombro</span>
+      <div class="ex-name">Dumbbell lateral raise — Elevación lateral con mancuernas</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">15 reps</span><span class="chip-w">RIR 1</span><span class="chip-p">Mancuernas 5-6 kg</span></div>
+      <div class="ex-cue">Codos ligeramente flexionados. Sube hasta la altura del hombro, baja controlado. No te balancees ni uses la espalda.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/3VcKaXpzqRo"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 3 · Hombro</span>
+      <div class="ex-name">Dumbbell front raise — Elevación frontal con mancuernas</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">12 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Mancuernas 5-6 kg</span></div>
+      <div class="ex-cue">Alterna brazos o simultáneo. Llega a la altura de los ojos. Controla la bajada — ahí también trabaja el músculo.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/hRV5e1QMVHQ"></iframe></div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Triserie final · Tríceps + Core</span>
+      <div class="ex-name">Overhead tricep extension (copa) + TRX tricep extension + L-sit crunch</div>
+      <div class="ex-chips"><span class="chip">3 vueltas</span><span class="chip">12 · 10 · 15 reps</span><span class="chip-w">RIR 1</span></div>
+      <div class="ex-cue"><strong>Copa:</strong> disco 10 kg a dos manos sobre la cabeza, baja el disco detrás de la nuca y sube. <strong>TRX tríceps:</strong> manos en agarres, cuerpo inclinado, dobla y extiende los codos. <strong>L-sit crunch:</strong> en el suelo, piernas a 90° en el aire, crunch hacia las rodillas. Sin descanso entre los tres.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver copa de tríceps</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/YbX7Wd8jQ-U"></iframe></div>
+    </div>
+
+    <div class="callout"><span class="ct">Finisher cardiopulmonar · 8 min</span>Escalador FT-8500 a ritmo sostenido, respiración nasal. Baja el pulso de forma controlada antes de salir.</div>
+  </div>
+
+  <!-- ===== DÍA B ===== -->
+  <div class="sub-pane" id="d2">
+    <div class="day-hdr"><span class="dt">Día B · Jalón + Brazos</span><span class="dl">Espalda · Bíceps · Antebrazo · Core</span></div>
+    <div class="callout info" style="margin-bottom:14px;">
+      <span class="ct">Configuración previa</span>
+      Barra EZ: <strong>~13 kg</strong> (barra + discos pequeños) · Mancuernas: <strong>5-6 kg fijas</strong> · Multigimnasio: pin en posición de jalón · TRX: listo.
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">🔥 Calentamiento · 50 lazos</span>
+      <div class="ex-name">Jump rope — 50 saltos continuos</div>
+      <div class="ex-chips"><span class="chip">2 rondas</span><span class="chip-i">ritmo constante</span></div>
+      <div class="ex-cue">Salta con ritmo parejo. Activa cardiovascular y calienta hombros y muñecas para el día de jalón.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 1 · Espalda</span>
+      <div class="ex-name">Lat pulldown — Jalón al pecho (multigimnasio)</div>
+      <div class="ex-chips"><span class="chip">4 series</span><span class="chip">10-12 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Multigimnasio · pin</span></div>
+      <div class="ex-cue">Pecho arriba, codos bajan hacia las costillas. No te cuelgues de la barra. La espalda hace el trabajo, no los brazos.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/CAwf7n6Luuc"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 1 · cardioaceleración</span>
+      <div class="ex-name">Battle rope alternating waves — Ondas alternas</div>
+      <div class="ex-chips"><span class="chip-i">35 seg</span><span class="chip-i">explosivo</span></div>
+      <div class="ex-cue">Mantiene el corazón elevado entre jalones. Rodillas semiflexionadas, no te detengas.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 2 · Espalda unilateral</span>
+      <div class="ex-name">Single-arm lat pulldown con towel grip — Jalón unilateral con trapo</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">10 reps c/lado</span><span class="chip-w">RIR 2</span><span class="chip-p">Multigimnasio + trapo</span></div>
+      <div class="ex-cue">Ancla el trapo al agarre de la máquina. Jalón con un solo brazo: activa los estabilizadores de la columna y corrige asimetrías. Ya lo hiciste — sabes cómo se siente.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/o_oIBWoCcjM"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 2 · cardioaceleración</span>
+      <div class="ex-name">4-count step-up a máxima velocidad</div>
+      <div class="ex-chips"><span class="chip-i">40 seg</span></div>
+      <div class="ex-cue">Escalador o banco. 4 tiempos a velocidad máxima. Mantén el pulso alto entre jalones.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 3 · Bíceps + Antebrazo</span>
+      <div class="ex-name">Zottman curl — Curl Zottman con mancuernas</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">12 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Mancuernas 5-6 kg</span></div>
+      <div class="ex-cue">Sube en supinación (palmas arriba), rota a pronación (palmas abajo) en el tope, baja así. En la bajada trabaja el braquiorradial — el músculo del antebrazo que da grosor al brazo. Ya lo hiciste — la rotación es el secreto.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/ZrS379jQGso"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 3 · Bíceps TRX</span>
+      <div class="ex-name">TRX bicep curl — Curl de bíceps en suspensión</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">10-12 reps</span><span class="chip-w">RIR 1</span><span class="chip-p">TRX · corporal</span></div>
+      <div class="ex-cue">De pie frente al punto de anclaje, cuerpo inclinado hacia atrás. Dobla los codos llevando las manos a las sienes. Más inclinado = más difícil. Ya lo hiciste — ajusta el ángulo según el esfuerzo.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/4h8dFDGVnhU"></iframe></div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 4 · Remo + Core</span>
+      <div class="ex-name">Seated cable row — Remo sentado en multigimnasio</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">12 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Multigimnasio · pin</span></div>
+      <div class="ex-cue">Tira hacia el ombligo, aprieta escápulas al final. Tronco erguido, no te eches atrás con el torso. Espalda baja siempre trabajando.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/GZbfZ033f74"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 4 · Core</span>
+      <div class="ex-name">Stability ball seated 360° hip rotation — Rotaciones de cadera en balón grande</div>
+      <div class="ex-chips"><span class="chip">2 series</span><span class="chip">10 rotaciones c/lado</span><span class="chip-p">Balón rojo grande</span></div>
+      <div class="ex-cue">Sentado en el balón rojo, pies en el suelo. Dibuja círculos grandes con la cadera: 10 en sentido horario, 10 en sentido antihorario. Activa el core profundo, cadera y lumbares. Ya lo hiciste — sientes el calor interno.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Triserie final · EZ curl + Medicine ball slam + Plank</span>
+      <div class="ex-name">EZ bar curl + Medicine ball overhead slam + Plancha 45 seg</div>
+      <div class="ex-chips"><span class="chip">3 vueltas</span><span class="chip">12 · 15 · 45 seg</span><span class="chip-w">RIR 1</span></div>
+      <div class="ex-cue"><strong>EZ curl:</strong> curl con barra EZ ~13 kg, estricto sin balanceo. <strong>Medicine ball slam:</strong> toma la medicine ball con arena, llévala sobre la cabeza completamente estirado y lánzala fuerte al suelo — activa abs, hombros y lats simultáneamente. <strong>Plancha:</strong> codos al suelo, cuerpo recto, sin caer la cadera. Sin descanso entre los tres.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver slam</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/HBTRJuNtYaI"></iframe></div>
+    </div>
+
+    <div class="callout"><span class="ct">Finisher cardiopulmonar · 8 min</span>Escalador FT-8500 a ritmo sostenido o cuerda de saltar. Baja el pulso de forma controlada antes de salir.</div>
+  </div>
+
+  <!-- ===== DÍA C ===== -->
+  <div class="sub-pane" id="d3">
+    <div class="day-hdr"><span class="dt">Día C · Pierna + Core</span><span class="dl">Cuádriceps · Glúteo · Femoral · Core profundo</span></div>
+    <div class="callout info" style="margin-bottom:14px;">
+      <span class="ct">Configuración previa</span>
+      Barra olímpica: <strong>37 kg</strong> (barra + 2×10 + 2×5 kg) · Multigimnasio: pin en posición de pierna · Balones listos.
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">🔥 Calentamiento · 50 lazos</span>
+      <div class="ex-name">Jump rope — 50 saltos continuos</div>
+      <div class="ex-chips"><span class="chip">2 rondas</span><span class="chip-i">ritmo constante</span></div>
+      <div class="ex-cue">Calienta rodillas y tobillos antes de cargar la barra. Aterrizaje suave.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 1 · Cuádriceps</span>
+      <div class="ex-name">Barbell squat — Sentadilla con barra (37 kg)</div>
+      <div class="ex-chips"><span class="chip">4 series</span><span class="chip">10 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Barra · 37 kg</span></div>
+      <div class="ex-cue">Barra alta en los trapecios. Baja hasta el paralelo, rodillas siguen los pies. Empuja con todo el pie al subir. La sentadilla con barra es el ejercicio hormonal más poderoso del plan.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/bEv6CCg2BC8"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 1 · cardioaceleración</span>
+      <div class="ex-name">4-count step-up a máxima velocidad</div>
+      <div class="ex-chips"><span class="chip-i">40 seg</span><span class="chip-i">explosivo</span></div>
+      <div class="ex-cue">Escalador de la máquina o banco. 4 tiempos máxima velocidad. Exige condición pulmonar entre sentadillas.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 2 · Femoral + Glúteo</span>
+      <div class="ex-name">Romanian deadlift — Peso muerto rumano (37 kg)</div>
+      <div class="ex-chips"><span class="chip">4 series</span><span class="chip">10-12 reps</span><span class="chip-w">RIR 2</span><span class="chip-p">Barra · 37 kg</span></div>
+      <div class="ex-cue">Cadera atrás, espalda neutra. Baja la barra rozando las piernas, siente el estiramiento del femoral. Sube apretando el glúteo. Este es tu ejercicio más importante para definir parte posterior.</div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver técnica</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/2SHsk9AzdjA"></iframe></div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 2 · cardioaceleración</span>
+      <div class="ex-name">Battle rope alternating waves</div>
+      <div class="ex-chips"><span class="chip-i">35 seg</span></div>
+      <div class="ex-cue">Cuerda de batalla entre series de peso muerto. Mantiene el pulso sin cargar las piernas.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 3 · Máquina pierna</span>
+      <div class="ex-name">Leg extension — Extensión de cuádriceps (multigimnasio)</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">15 reps</span><span class="chip-w">RIR 1</span><span class="chip-p">Multigimnasio · pin</span></div>
+      <div class="ex-cue">Aprieta el cuádriceps en el tope, baja controlado. No uses impulso. Bombeo de aislamiento.</div>
+    </div>
+    <div class="ex-block">
+      <span class="bi-tag">◆ Biserie 3 · Máquina femoral</span>
+      <div class="ex-name">Leg curl — Curl femoral (multigimnasio)</div>
+      <div class="ex-chips"><span class="chip">3 series</span><span class="chip">15 reps</span><span class="chip-w">RIR 1</span><span class="chip-p">Multigimnasio · pin</span></div>
+      <div class="ex-cue">Jala lento, aprieta el femoral al cerrar. No arquees la espalda. Extensión + curl: pierna completa sin cambiar de máquina.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Triserie final · Core funcional</span>
+      <div class="ex-name">L-sit crunch + Stability ball crunch + Medicine ball slam</div>
+      <div class="ex-chips"><span class="chip">3 vueltas</span><span class="chip">15 · 15 · 12 reps</span><span class="chip-w">RIR 0</span></div>
+      <div class="ex-cue"><strong>L-sit crunch:</strong> tumbado en el suelo, piernas a 90° en el aire, crunch hacia las rodillas con los brazos extendidos. <strong>Stability ball crunch:</strong> espalda sobre el balón rojo, crunch controlado desde la hiperextensión. <strong>Medicine ball slam:</strong> arriba-abajo con máxima fuerza. Abs al límite — cierre del día.</div>
+    </div>
+
+    <div class="callout"><span class="ct">Finisher cardiopulmonar · 10 min</span>Escalador FT-8500 a ritmo sostenido. Recuperación activa de piernas. Respiración nasal.</div>
+  </div>
+
+  <!-- ===== DÍA D ===== -->
+  <div class="sub-pane" id="d4">
+    <div class="day-hdr"><span class="dt">Día D · Full Metabólico</span><span class="dl">Cuerpo completo · Máxima exigencia cardiopulmonar</span></div>
+    <p class="lead">Este es el día más exigente. Circuito metabólico funcional: 4 vueltas, descanso mínimo. El corazón y el pulmón son los protagonistas. Cada ejercicio usa una herramienta diferente de tu espacio — de principio a fin, todo el gimnasio trabaja.</p>
+    <div class="callout info" style="margin-bottom:14px;">
+      <span class="ct">Configuración previa</span>
+      Mancuernas: <strong>5-6 kg fijas</strong> · Disco 10 kg suelto para copa · Medicine ball lista · Balón grande en el centro · TRX anclado · Cuerda de batalla desplegada.
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">🔥 Calentamiento · 50 lazos</span>
+      <div class="ex-name">Jump rope — 50 saltos continuos</div>
+      <div class="ex-chips"><span class="chip">2 rondas</span><span class="chip-i">ritmo constante</span></div>
+      <div class="ex-cue">Arranca el corazón desde el minuto 1. Este día no hay calentamiento suave — entramos directamente al metabolismo.</div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Circuito metabólico · 4 vueltas · 60 seg descanso entre vueltas</span>
+      <div class="ex-name" style="margin-top:10px;">1. TRX inverted row — Remo invertido en TRX · 12 reps</div>
+      <div class="ex-cue" style="margin-bottom:8px;">De pie inclinado hacia atrás, agarra los TRX y tira el pecho hacia las manos. Espalda + bíceps + core.</div>
+      <div class="ex-name">2. Barbell squat — Sentadilla con barra (27 kg) · 10 reps</div>
+      <div class="ex-cue" style="margin-bottom:8px;">Mismo movimiento del Día C. Caderas atrás, paralelo, empuja fuerte.</div>
+      <div class="ex-name">3. Dumbbell lateral + front raise superset · 10 reps c/u</div>
+      <div class="ex-cue" style="margin-bottom:8px;">Elevación lateral inmediatamente seguida de frontal, sin soltar las mancuernas. Hombros en fuego.</div>
+      <div class="ex-name">4. Overhead tricep extension (copa) · 15 reps</div>
+      <div class="ex-cue" style="margin-bottom:8px;">Disco 10 kg a dos manos sobre la cabeza, baja y sube. Tríceps completo.</div>
+      <div class="ex-name">5. Battle rope alternating waves · 40 seg</div>
+      <div class="ex-cue" style="margin-bottom:8px;">El finisher de cada vuelta. Explosivo, sin parar hasta el último segundo.</div>
+      <div class="ex-name">6. Stability ball seated 360° hip rotation · 8 c/lado</div>
+      <div class="ex-cue">Recuperación activa entre vueltas. Sentado en el balón rojo, círculos de cadera. Baja el pulso sin sentarte quieto.</div>
+      <div class="ex-chips" style="margin-top:10px;"><span class="chip">4 vueltas</span><span class="chip-w">descanso 60 seg solo entre vueltas</span><span class="chip-i">~35-40 min totales</span></div>
+      <button class="yt-btn" onclick="toggleYt(this)">▶ Ver TRX inverted row</button>
+      <div class="yt-frame"><iframe loading="lazy" data-src="https://www.youtube.com/embed/s7MqCxVhBQE"></iframe></div>
+    </div>
+
+    <div class="ex-block">
+      <span class="bi-tag">◆ Cierre · Abs finales</span>
+      <div class="ex-name">L-sit crunch + Medicine ball slam · 2 rondas</div>
+      <div class="ex-chips"><span class="chip">15 + 12 reps</span><span class="chip-w">sin descanso</span></div>
+      <div class="ex-cue">Cierra el circuito con los abs. El slam es explosivo — lanza la medicine ball con toda la fuerza restante.</div>
+    </div>
+
+    <div class="callout"><span class="ct">Cierre · 5 min de respiración + estiramiento</span>Respiración diafragmática: 4 seg inhala, 7 retén, 8 exhala. Tres rondas. Luego estiramiento de cuádriceps, isquiotibiales y hombros. Bajamos la variabilidad cardíaca de forma controlada — eso es recuperación real.</div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <span class="section-lbl">Días sin gimnasio · El reset no para</span>
+    <p>Los fines de semana no hay gym, pero el metabolismo sigue trabajando: <strong>cardio en ayunas</strong> (ver pestaña ⚡ Turbo AM, escalado 20→40 min) y <strong>caminata de 7.000-9.000 pasos</strong>. Caminar es la herramienta más subestimada para quemar grasa sin tocar el músculo. El fin de semana es cuando el cuerpo asimila lo que le hicimos entre semana.</p>
+  </div>
+</section>
+
+<!-- ===================== NUTRICION ===================== -->
+<section class="tab-pane" id="nutricion">
+  <div class="hero">
+    <h1>El <span class="name">reset del azúcar</span></h1>
+    <p class="sub">Aplanar los picos de insulina desde el día 1</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">La estrategia</span>
+    <p class="lead">Tu cuerpo viene de años de café, ultraprocesados y picos de azúcar que el hígado compensa con disparos de insulina. Eso te deja cansado, con hambre y sin energía real. El plan ataca esto con tres reglas simples: <strong>proteína en cada comida</strong>, <strong>carbohidrato siempre acompañado</strong> (nunca solo) y <strong>fuera la chatarra</strong>. Comes con tus alimentos favoritos — pollo, carne, huevo, cerdo, arroz, papa — pero ordenados para que la glucosa se mantenga estable.</p>
+    <div class="callout">
+      <span class="ct">El principio que cambió mi propio cuerpo</span>
+      Cuando perdí mi forma física, me reseteé con algo sencillo: arroz con huevo, carne de cerdo, infusiones de canela-jengibre-cúrcuma por litros, más agua, limón y caminar. Funcionó. Tu plan es ese mismo principio, ahora con precisión clínica.
+    </div>
+  </div>
+
+  <div class="sub-nav" id="nutSub">
+    <button class="sub-btn active" data-sub="nE">🏋️ Día entreno</button>
+    <button class="sub-btn" data-sub="nD">😴 Día descanso</button>
+    <button class="sub-btn" data-sub="nI">🍵 Infusiones reset</button>
+  </div>
+
+  <div class="sub-pane active" id="nE">
+    <div class="day-hdr"><span class="dt">Día de entreno</span><span class="dl">~2.300 kcal · 150 g proteína</span></div>
+    <div class="ex-block">
+      <div class="ex-name">🌅 Desayuno (post-cardio)</div>
+      <div class="ex-cue">3 huevos + 2 claras revueltos · arroz integral (1 taza) · ½ aguacate · café negro sin azúcar.<br><strong>Por qué:</strong> proteína + grasa buena estabilizan la glucosa toda la mañana.</div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🥗 Almuerzo</div>
+      <div class="ex-cue">Carne de res o cerdo magro (180 g) · papa criolla o yuca (porción media) · verduras verdes abundantes · cucharada de aceite de oliva.</div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🍎 Merienda pre/post entreno</div>
+      <div class="ex-cue">Pollo (120 g) o queso bajo en grasa · fruta entera (manzana o guayaba) · puñado de nueces.</div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🌙 Cena</div>
+      <div class="ex-cue">Pescado o pollo (160 g) · legumbres (fríjol o lenteja, ½ taza) · ensalada verde grande.<br><strong>Truco:</strong> empieza la comida por la verdura y la proteína, el carbohidrato de último. Baja el pico de glucosa.</div>
+    </div>
+  </div>
+
+  <div class="sub-pane" id="nD">
+    <div class="day-hdr"><span class="dt">Día de descanso</span><span class="dl">~2.050 kcal · 150 g proteína</span></div>
+    <div class="ex-block">
+      <div class="ex-name">🌅 Desayuno</div>
+      <div class="ex-cue">3 huevos · pan integral (1 tajada) · tomate · café negro. Carbohidrato más bajo porque no hay demanda de entreno.</div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🥗 Almuerzo</div>
+      <div class="ex-cue">Proteína magra (180 g) · porción reducida de tubérculo · verduras verdes a voluntad · grasa buena (aguacate o aceite de oliva).</div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🍎 Merienda</div>
+      <div class="ex-cue">Yogur griego o queso bajo en grasa · fruta · infusión reset.</div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🌙 Cena</div>
+      <div class="ex-cue">Proteína (160 g) · ensalada grande · legumbres ligeras. Cena temprana (antes de 8 pm) para mejorar el sueño y la testosterona nocturna.</div>
+    </div>
+    <div class="callout warn"><span class="ct">Fuera del plan (los que disparan tu insulina)</span>Ultraprocesados, frito, hamburguesas, postres y dulces. No es para siempre — es el reset de 8 semanas. Después reintroducimos con estrategia.</div>
+  </div>
+
+  <div class="sub-pane" id="nI">
+    <div class="day-hdr"><span class="dt">Infusiones reset</span><span class="dl">El acelerador que validó mi experiencia</span></div>
+    <p class="lead">La base de tu reset metabólico líquido. Tómalas a diario, especialmente el mes 1.</p>
+    <div class="ex-block">
+      <div class="ex-name">🍵 Infusión canela-jengibre-cúrcuma</div>
+      <div class="ex-cue">1 a 1.5 L al día. Canela en rama (varios tallos), jengibre fresco en rodajas, cúrcuma (con pizca de pimienta negra para absorción). Hierve, deja reposar, toma a lo largo del día.</div>
+      <div class="ex-chips"><span class="chip">Glucosa estable</span><span class="chip">Antiinflamatorio</span><span class="chip-i">Evidencia moderada</span></div>
+    </div>
+    <div class="callout info">
+      <span class="ct">La ciencia detrás</span>
+      Meta-análisis de ensayos clínicos muestran que la canela reduce glucosa en ayunas, insulina y resistencia a la insulina (HOMA-IR), con mejores resultados a dosis de más de 1.5 g/día en periodos cortos. Actúa aumentando los transportadores GLUT4 — el mecanismo por el que tu músculo capta azúcar. Tu intuición de "toneladas de canela" tenía base fisiológica real.
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">🌿 Zarzaparrilla (Smilax) — depurativo mes 1</div>
+      <div class="ex-cue">Infusión 1 vez al día durante todo el primer mes. Tradicionalmente usada como depurativa de la sangre y apoyo renal/hepático. Acompaña el proceso de limpieza del reset.</div>
+      <div class="ex-chips"><span class="chip-p">Depurativo</span><span class="chip">Mes 1 completo</span></div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-name">💧 Agua + limón</div>
+      <div class="ex-cue">Mínimo 2.5-3 L de agua al día (vienes de 1-2 L, hay que subir). Empieza la mañana con agua tibia y limón. Hidratación = energía, digestión y piel.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TURBO AM ===================== -->
+<section class="tab-pane" id="turbo">
+  <div class="hero">
+    <h1>El <span class="name">turbo</span> de la mañana</h1>
+    <p class="sub">Energía real sin depender del tinto · Cardio en ayunas escalado</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">Por qué vives del café (y cómo lo arreglamos)</span>
+    <p class="lead">Javier, no tomas tanto tinto por gusto: lo tomas porque tu energía celular está rota. Glucosa inestable + sueño insuficiente + posibles déficits = tu cuerpo busca en la cafeína la energía que ya no produce solo. El plan no te quita el café de golpe (eso te hundiría). Lo <strong>redirige</strong>: lo usamos como quemador estratégico antes del cardio, y a medida que tu metabolismo se repara, la necesidad baja sola.</p>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Cardio en ayunas · Escalado progresivo</span>
+    <p class="lead">A primera hora, antes de cualquier comida. Solo agua + el pre-cardio de abajo. Caminata rápida, trote suave, bici o elíptica.</p>
+    <div class="grid4">
+      <div class="stat"><div class="num">20'</div><div class="lbl">Semana 1</div></div>
+      <div class="stat"><div class="num">25'</div><div class="lbl">Semana 2</div></div>
+      <div class="stat"><div class="num">30'</div><div class="lbl">Semana 3</div></div>
+      <div class="stat"><div class="num">40'</div><div class="lbl">Semana 4</div></div>
+    </div>
+    <div class="callout info">
+      <span class="ct">Por qué en ayunas</span>
+      Con el estómago vacío y glucógeno bajo, el cuerpo recurre más a la grasa como combustible. Mantenido a intensidad ligera-moderada (Zona 2), maximiza la oxidación de grasa sin tocar el músculo. Lo vigilo en las sesiones presenciales.
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Pre-cardio · Lo único que tomas antes</span>
+    <table class="tbl">
+      <tr><th>Ayuda</th><th>Función</th><th>Evidencia</th></tr>
+      <tr><td><strong>Café negro</strong> (sin azúcar)</td><td>Moviliza ácidos grasos · de muleta a quemador</td><td><span class="ev ev-A">Alta</span></td></tr>
+      <tr><td><strong>L-tirosina</strong> (500 mg)</td><td>Foco y energía mental sin romper el ayuno</td><td><span class="ev ev-M">Moderada</span></td></tr>
+      <tr><td><strong>Electrolitos</strong> (sodio, potasio, Mg)</td><td>Energía, evita mareo en ayunas</td><td><span class="ev ev-A">Alta</span></td></tr>
+      <tr><td><strong>L-teanina</strong> (con el café)</td><td>Energía estable sin nervios ni bajón</td><td><span class="ev ev-M">Moderada</span></td></tr>
+    </table>
+    <p style="font-size:12.5px;color:var(--muted);">Nada de comida sólida antes del cardio. Estas ayudas acentúan la quema de grasa sin frenar el ayuno.</p>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Energía sostenida todo el día</span>
+    <p class="lead">El turbo no es solo la mañana. Cuando arreglemos la base — azúcar estable + dormir + entrenar — la energía te va a durar todo el día sin recargas de café:</p>
+    <ul>
+      <li><strong>Glucosa estable:</strong> sin los picos y caídas que te dan el bajón de las 3 pm.</li>
+      <li><strong>Creatina</strong> (opcional, ver suplementos): energía cerebral y muscular.</li>
+      <li><strong>Comidas con proteína:</strong> evitan el sueño post-almuerzo.</li>
+      <li><strong>Sueño:</strong> objetivo 7-8 h. Es donde se fabrica tu testosterona y tu energía del día siguiente.</li>
+    </ul>
+    <div class="callout"><span class="ct">La meta del reset</span>Que dentro de un mes, aun si te quito el café, arranques el día encendido. Eso es un metabolismo reparado.</div>
+  </div>
+</section>
+
+<!-- ===================== DETOX 7D ===================== -->
+<section class="tab-pane" id="detox">
+  <div class="hero">
+    <h1>Protocolo <span class="name">FitMagra Detox</span></h1>
+    <p class="sub">7 días · Limpieza de órganos vitales · Arranque del reset</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">Qué es y qué no es</span>
+    <p class="lead">Estos 7 días no son una "dieta milagro" ni un ayuno extremo. Son una semana de arranque donde le bajamos la carga a tus órganos de filtrado — hígado, riñón, intestino — quitando lo que los sobrecarga (alcohol, ultraprocesados, exceso de café) y dándoles lo que los apoya (agua, fibra, depurativos, antiinflamatorios). El objetivo: que sientas el cambio desde la primera semana.</p>
+    <div class="callout warn"><span class="ct">Honestidad clínica</span>El cuerpo se "desintoxica" solo a través del hígado y los riñones — ningún té hace ese trabajo por ellos. Lo que sí hacemos es <strong>dejar de sobrecargarlos</strong> y darles condiciones óptimas. Eso es real y se siente.</div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Los 7 días · Órgano por órgano</span>
+    <div class="detox-day"><div class="org">Día 1 · Intestino</div><div class="dn">Reset digestivo</div>Fibra alta (verduras verdes, avena), 3 L de agua, infusión jengibre-cúrcuma. Fuera: frito, lácteo pesado, azúcar. Caminata 30 min.</div>
+    <div class="detox-day"><div class="org">Día 2 · Hígado</div><div class="dn">Apoyo hepático</div>Verduras crucíferas (brócoli, repollo), zarzaparrilla, agua con limón en ayunas. Cero alcohol, café reducido a 1.</div>
+    <div class="detox-day"><div class="org">Día 3 · Riñón</div><div class="dn">Hidratación profunda</div>3.5 L de agua, infusiones diuréticas suaves, sandía/pepino. Sodio moderado. Cardio ligero en ayunas 20 min.</div>
+    <div class="detox-day"><div class="org">Día 4 · Sangre / circulación</div><div class="dn">Depuración</div>Zarzaparrilla, ajo, cúrcuma con pimienta, remolacha. Caminata + 10 min de respiración diafragmática.</div>
+    <div class="detox-day"><div class="org">Día 5 · Páncreas / glucosa</div><div class="dn">Estabilización del azúcar</div>Proteína en cada comida, canela en infusión todo el día, carbohidrato solo acompañado. Sin dulces ni picos.</div>
+    <div class="detox-day"><div class="org">Día 6 · Piel / linfático</div><div class="dn">Eliminación</div>Sudoración (cardio o sauna si tienes), cepillado en seco, 3 L agua, vitamina C natural (cítricos, guayaba).</div>
+    <div class="detox-day"><div class="org">Día 7 · Integración</div><div class="dn">Cierre y transición</div>Día completo del plan limpio. Evalúas cómo te sientes: energía, digestión, sueño. Aquí arranca formalmente el reset.</div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Reglas transversales de los 7 días</span>
+    <div class="grid2">
+      <div><span class="chip">3+ L agua/día</span></div>
+      <div><span class="chip">Cero alcohol</span></div>
+      <div><span class="chip-w">Café: máx 1/día</span></div>
+      <div><span class="chip">Cero ultraprocesados</span></div>
+      <div><span class="chip">Infusiones reset diarias</span></div>
+      <div><span class="chip">Dormir 7-8 h</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SUPLEMENTOS ===================== -->
+<section class="tab-pane" id="suplementos">
+  <div class="hero">
+    <h1>El <span class="name">reset hormonal</span></h1>
+    <p class="sub">Más testosterona, más energía, más vida · Cada suplemento con su evidencia</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">La verdad que te debo como coach</span>
+    <p class="lead">Javier, te voy a dar suplementos que <em>funcionan</em>, y te voy a decir exactamente qué tan fuerte es la evidencia de cada uno. Eso es lo que hace que confíes en mí: no te vendo magia, te doy ciencia graduada. Lo más importante que tienes que entender: <strong>el motor real de tu testosterona no es un frasco</strong>. Es perder la grasa abdominal, dormir bien y entrenar. Los suplementos potencian ese motor — no lo reemplazan.</p>
+    <div class="callout">
+      <span class="ct">Las 3 palancas que mueven tu testosterona (las gratis)</span>
+      <strong>1. Bajar grasa visceral:</strong> la grasa convierte tu testosterona en estrógeno. Secarla es la palanca #1.<br>
+      <strong>2. Dormir 7-8 h:</strong> la testosterona se fabrica durante el sueño profundo.<br>
+      <strong>3. Entrenar fuerza:</strong> estimula directamente la producción hormonal.
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Stack del reset · Núcleo</span>
+    <table class="tbl">
+      <tr><th>Suplemento</th><th>Para qué · Timing</th><th>Evidencia</th></tr>
+      <tr><td><strong>Ashwagandha KSM-66</strong><br><small style="color:var(--muted)">300 mg · 2 veces/día · 8 sem</small></td><td>⭐ <strong>La estrella.</strong> Sube testosterona, volumen y calidad de semen, deseo sexual. Reduce cortisol/estrés. Mañana y noche.</td><td><span class="ev ev-A">Mod-Alta</span></td></tr>
+      <tr><td><strong>Canela + jengibre + cúrcuma</strong><br><small style="color:var(--muted)">Infusión diaria</small></td><td>Estabiliza glucosa, baja insulina, antiinflamatorio. Todo el día.</td><td><span class="ev ev-M">Moderada</span></td></tr>
+      <tr><td><strong>Zarzaparrilla (Smilax)</strong><br><small style="color:var(--muted)">Infusión · mes 1</small></td><td>Depurativo tradicional de sangre y apoyo hepático. 1×/día todo el mes 1.</td><td><span class="ev ev-B">Tradicional</span></td></tr>
+      <tr><td><strong>Vitamina D + Zinc + Magnesio</strong><br><small style="color:var(--muted)">según labs</small></td><td>Cofactores de testosterona y energía. Solo suben T <em>si hay déficit</em> — por eso los exámenes.</td><td><span class="ev ev-A">Alta si déficit</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Monster Test (base Tribulus terrestris)</span>
+    <div class="callout warn">
+      <span class="ct">Posicionamiento honesto</span>
+      El Monster Test entra al plan, pero te explico con claridad qué hace y qué no. La evidencia científica actual indica que el Tribulus <strong>no aumenta de forma robusta la testosterona</strong> — donde sí muestra efecto es en parámetros de fertilidad y motilidad espermática. Por eso lo posicionamos como <strong>soporte de fertilidad y vitalidad sexual</strong>, complementando el objetivo "más semen". El que te sube la testosterona de verdad es el sistema completo: la ashwagandha, la pérdida de grasa, el sueño y el entrenamiento. Así tomas tu Monster Test, sientes los cambios reales, y yo no te miento en ninguna línea.
+    </div>
+    <table class="tbl">
+      <tr><th>Suplemento</th><th>Para qué</th><th>Evidencia (T)</th></tr>
+      <tr><td><strong>Monster Test (Tribulus)</strong></td><td>Soporte de fertilidad / motilidad espermática · vehículo de vitalidad</td><td><span class="ev ev-B">Baja para T</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Opcionales · Refuerzo</span>
+    <table class="tbl">
+      <tr><th>Suplemento</th><th>Para qué</th><th>Evidencia</th></tr>
+      <tr><td><strong>Creatina monohidrato</strong><br><small style="color:var(--muted)">5 g/día · opcional</small></td><td>Energía muscular y cerebral, fuerza, rendimiento. De los suplementos más estudiados que existen.</td><td><span class="ev ev-A">Alta</span></td></tr>
+      <tr><td><strong>CoQ10</strong><br><small style="color:var(--muted)">opcional</small></td><td>Refuerza conteo y motilidad espermática. Apoya energía celular.</td><td><span class="ev ev-M">Moderada</span></td></tr>
+      <tr><td><strong>L-tirosina / L-teanina</strong><br><small style="color:var(--muted)">pre-cardio</small></td><td>Turbo matutino, energía y foco sin café. (Ver pestaña Turbo AM.)</td><td><span class="ev ev-M">Moderada</span></td></tr>
+    </table>
+  </div>
+
+  <div class="callout info">
+    <span class="ct">Cómo lo decidimos juntos</span>
+    No tienes que comprar todo de una. En tu primera sesión revisamos qué tienes a la mano, qué presupuesto manejas este mes, y priorizamos. La ashwagandha y las infusiones son la base no negociable. El resto lo vamos sumando.
+  </div>
+</section>
+
+<!-- ===================== CERRAR MES ===================== -->
+<section class="tab-pane" id="cerrar">
+  <div class="hero">
+    <h1>Cerrar el <span class="name">Mes 01</span></h1>
+    <p class="sub">Donde medimos el cambio real</p>
+  </div>
+
+  <div class="card card-acc">
+    <span class="section-lbl">Checklist de cierre</span>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">✓</div><div class="d">Exámenes de laboratorio tomados (base)</div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">✓</div><div class="d">6 sesiones presenciales completadas</div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">✓</div><div class="d">Protocolo Detox 7 días realizado</div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">✓</div><div class="d">Cardio en ayunas escalado 20→40 min</div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">✓</div><div class="d">Foto y medidas finales</div></div>
+    <div class="sess-row"><div class="sess-dot" onclick="this.classList.toggle('done')">✓</div><div class="d">Peso registrado · meta 71 kg en curso</div></div>
+  </div>
+
+  <div class="card">
+    <span class="section-lbl">Lo que viene · Tu transición de plan</span>
+    <p class="lead">Los meses 01 y 02 son el <strong>reset intensivo</strong>: alta supervisión, yo entrenando contigo, ajustes semanales — la fase más exigente y de mayor acompañamiento. A partir del <strong>mes 03</strong> entramos en la fase de <strong>consolidación sistematizada</strong>, donde tu cuerpo ya tiene el motor reparado y el sistema corre con menos supervisión directa. Por eso el plan se ajusta de tier: mismo método, fase distinta.</p>
+    <div class="callout"><span class="ct">El reset no termina en la boda</span>Termina cuando tu cuerpo ya no necesita que lo vigilen para mantenerse. Ese es el objetivo de los 6 meses.</div>
+  </div>
+
+  <div class="card" style="text-align:center;">
+    <span class="section-lbl">Sigue conectado</span>
+    <p>Cualquier duda durante el mes, escríbeme directo. Estoy vigilando tu proceso de cerca.</p>
+    <a class="wa-btn" href="https://wa.me/573165754416?text=Hola%20Mauro%2C%20listo%20para%20cerrar%20mi%20Mes%2001" target="_blank">📲 Escribir a Mauro</a>
+  </div>
+
+  <div class="foot">
+    <strong style="font-family:'Playfair Display';">Fit<span style="color:var(--accent)">Magra</span> Systems</strong><br>
+    Sistema de transformación clínica · Mes 01 · Javier Flórez Castillo<br>
+    <a href="https://fitmagra.vercel.app/" target="_blank">fitmagra.vercel.app</a>
+  </div>
+</section>
+
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// THEME
+function toggleTheme(){
+  const h=document.documentElement;
+  const cur=h.getAttribute('data-theme');
+  const next=cur==='dark'?'light':'dark';
+  h.setAttribute('data-theme',next);
+  document.getElementById('themeBtn').textContent=next==='dark'?'🌙':'☀️';
+  try{localStorage.setItem('fm-theme',next);}catch(e){}
+}
+(function(){
+  try{const s=localStorage.getItem('fm-theme');if(s){document.documentElement.setAttribute('data-theme',s);document.getElementById('themeBtn').textContent=s==='dark'?'🌙':'☀️';}}catch(e){}
+})();
+
+// MAIN TABS
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(btn.dataset.tab==='resumen')animateChart();
+  });
+});
+
+// SUB TABS
+document.querySelectorAll('.sub-nav').forEach(nav=>{
+  nav.querySelectorAll('.sub-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const parent=btn.closest('.tab-pane');
+      nav.querySelectorAll('.sub-btn').forEach(b=>b.classList.remove('active'));
+      parent.querySelectorAll('.sub-pane').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      parent.querySelector('#'+btn.dataset.sub).classList.add('active');
+    });
+  });
+});
+
+// YOUTUBE lazy
+function toggleYt(btn){
+  const frame=btn.nextElementSibling;
+  const iframe=frame.querySelector('iframe');
+  if(!frame.classList.contains('open')){
+    if(!iframe.src)iframe.src=iframe.dataset.src;
+    frame.classList.add('open');
+    btn.textContent='▲ Ocultar';
+  }else{
+    frame.classList.remove('open');
+    btn.textContent='▶ Ver técnica';
+  }
+}
+
+// CHART ANIMATION
+function animateChart(){
+  const line=document.getElementById('wLine');
+  const area=document.getElementById('wArea');
+  if(!line)return;
+  line.style.transition='none';line.style.strokeDashoffset='700';
+  area.style.transition='none';area.style.opacity='0';
+  requestAnimationFrame(()=>{setTimeout(()=>{
+    line.style.transition='stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1)';
+    line.style.strokeDashoffset='0';
+    area.style.transition='opacity 1.2s ease .6s';
+    area.style.opacity='1';
+  },150);});
+}
+
+// PROGRESS BAR
+setTimeout(()=>{const f=document.getElementById('progFill');if(f)f.style.width='16.6%';},500);
+
+// BACK TOP
+window.addEventListener('scroll',()=>{document.getElementById('backTop').classList.toggle('vis',window.scrollY>300);});
+
+// initial chart
+setTimeout(animateChart,600);
+</script>
+</body>
+</html>
